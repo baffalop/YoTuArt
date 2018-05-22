@@ -1,4 +1,5 @@
 import tweepy
+import os.path
 import pickle
 
 
@@ -11,6 +12,7 @@ class YoTuArt:
 
     def __init__(self):
         if not self.auth:
+            print("Welcome to YoTuArt. I need yr dataz.")
             consumer_key = input('Consumer key: ')
             consumer_secret = input('Consumer secret: ')
             access_token = input('Access token: ')
@@ -28,5 +30,10 @@ class YoTuArt:
 
 
 if __name__ == 'main':
-    yta_file = 'finish me'
-    y_t_a = YoTuArt()
+    yta_filepath = 'y_t_a_config.P'
+    if os.path.exists(yta_filepath):
+        with open(yta_filepath, 'wb') as yta_file:
+            y_t_a = pickle.load(yta_file)
+    else:
+        y_t_a = YoTuArt()
+
